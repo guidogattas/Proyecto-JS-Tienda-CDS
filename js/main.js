@@ -215,7 +215,6 @@ function aumentar_producto__carrito(producto_carrito) {
   carrito.push(producto_carrito);
   render_carrito();
   guardarSession();
-  console.log(carrito);
 }
 
 render_carrito();
@@ -243,22 +242,21 @@ function render_carrito() {
 
   // AUMENTAR CLICKEANDO BOTON INPUT
 
-  let btn_input = document.querySelectorAll(".ItemCarrito");
+  let btn_input = document.querySelectorAll(".input_unidades");
 
   for (let btn of btn_input) {
     btn.addEventListener("change", sumaCantidad);
   }
 
   function sumaCantidad(e) {
-    const sumaInput = e.target;
-    const valorInput =
-      sumaInput.parentElement.querySelector(".ItemCarrito").textContent;
-    carrito.forEach((item) => {
-      if (item.cantidad === valorInput) {
-        sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
-        item.cantidad = sumaInput.value;
+    const input = e.target;
+    const id = input.parentElement.querySelector(".id_producto").textContent;
+
+
+    carrito.forEach((producto) => {
+        input.value < 1 ? (input.value = 1) : input.value;
+        producto.cantidad = input.value;
         carrito_total();
-      }
     });
   }
 
@@ -289,4 +287,4 @@ function render_carrito() {
 carrito_total();
 guardarSession();
 
-console.log(carrito);
+console.log (carrito);
