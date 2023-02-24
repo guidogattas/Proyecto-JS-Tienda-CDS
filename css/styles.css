@@ -68,6 +68,10 @@ h3 {
   padding: 50px;
 }
 
+h6#card_id {
+  font-size: 10px;
+}
+
 div.productos {
   display: flex;
   justify-content: center;
@@ -79,6 +83,14 @@ div.card {
   margin: 10px;
   border: 6px solid black;
   box-shadow: #000000;
+  transition: 0.4s;
+  width: 18rem;
+}
+
+
+div.card:hover{
+  scale: 1.04;
+  
 }
 
 
@@ -276,3 +288,14 @@ div.card {
     font-weight: bold;
   }
 
+  input.input_unidades {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  p.id_producto {
+    width: min-content;
+    color:rgb(68, 12, 12);
+  }

@@ -13,73 +13,120 @@ let lista_productos = [];
 
 lista_productos.push(
   new Productos(
-    1,
+    "CD001",
     "Faith No More",
     "King For A Day",
     "./images/faith-no-more-king-for-a-day.png",
-    3000,
+    3000
   )
 );
 lista_productos.push(
   new Productos(
-    2,
+    "CD002",
     "Iron Maiden",
     "Fear of the Dark",
     "./images/iron-maiden-fear.jpg",
-    3500,
+    3500
   )
 );
 lista_productos.push(
   new Productos(
-    3,
+    "CD003",
     "Primus",
     "Antipop",
     "./images/primus-antipop.jpeg",
-    4000,
-    )
+    4000
+  )
+);
+lista_productos.push(
+  new Productos("CD004", "AC/DC", "Live", "./images/ac-dc-live", 3800)
 );
 lista_productos.push(
   new Productos(
-    4,
-    "AC/DC",
-    "Live",
-    "./images/ac-dc-live",
-    3800,
-    )
-);
-lista_productos.push(
-  new Productos(
-    5,
+    "CD005",
     "Guns 'N' Roses",
     "Apetite for Destruction",
     "./images/guns-n-roses-apetite.jpg",
-    3600,
+    3600
   )
 );
 lista_productos.push(
   new Productos(
-    6,
-    "Pearl Jam",
-    "Ten",
-    "./images/pearl-jam-ten.jpg",
-    3900,
-    )
+    "CD006",
+    "At The Drive In",
+    "Relationship of Command",
+    "./images/at-the-drive-in-relationship.webp",
+    2600
+  )
 );
-
-console.log(lista_productos);
-
+lista_productos.push(
+  new Productos(
+    "CD007",
+    "Slipknot",
+    "Day of the Gusano",
+    "./images/slipknot-day.jpg",
+    3600
+  )
+);
+lista_productos.push(
+  new Productos(
+    "CD008",
+    "Stone Temple Pilots",
+    "Core",
+    "./images/stone-temple-pilots-core.webp",
+    3750
+  )
+);
+lista_productos.push(
+  new Productos(
+    "CD009",
+    "Soundgarden",
+    "Badmotorfinger",
+    "./images/soundgarden-badmotorfinger.jpg",
+    3750
+  )
+);
+lista_productos.push(
+  new Productos(
+    "CD010",
+    "Iron Maiden",
+    "The Number of the Beast",
+    "./images/iron-maiden-the-number-of-the-beast.jpg",
+    3650
+  )
+);
+lista_productos.push(
+  new Productos(
+    "CD011",
+    "Dropkick Murphys",
+    "The Gang's All Here",
+    "./images/dropkick-murphys-gangsallhere.jpg",
+    2800
+  )
+);
+lista_productos.push(
+  new Productos(
+    "CD012",
+    "Alice In Chains",
+    "Dirt",
+    "./images/alice-in-chains-dirt.webp",
+    3550
+  )
+);
 // RENDER PRODUCTOS
 
 let productos_agregar = document.querySelector(".productos");
+
 function renderizarProductos() {
   lista_productos.forEach((producto) => {
     productos_agregar.innerHTML += `
-    <div class='card' style='width: 18rem;'>
+    <div class='card'>
     <img src='${producto.imgSrc}' class='card-img-top card_img' alt='imagen ${producto.nombre}'>
     <div class='card_body'>
       <h4 class='card_title_artista'>${producto.nombre_artista}</h4>
       <h5 class='card_title_album'>${producto.nombre_album}</h5>
       <h5 class='card_precio'>${producto.precio}$</h5>
+      <h6 id='card_id'>${producto.id}</h6>
 
       <button class='btn_agregar_carrito'>AGREGAR AL CARRITO</button>
 
@@ -96,7 +143,23 @@ const guardarSession = () => {
   sessionStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
-let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
+// TOTAL CARRITO
+
+const carrito_total = () => {
+  const valor_total = document.getElementById("carrito_precio_total");
+
+  let total_a_pagar = 0;
+  carrito.forEach((item) => {
+    const precio = parseInt(item.precio);
+    const cantidad = parseInt(item.cantidad);
+    total_a_pagar += precio * cantidad;
+  });
+
+  valor_total.innerHTML = `$${total_a_pagar}`;
+  guardarSession();
+};
+
+// CARRITO
 
 let btn_agregar = document.querySelectorAll(".btn_agregar_carrito");
 
@@ -104,9 +167,14 @@ for (let btn of btn_agregar) {
   btn.addEventListener("click", agregar_a_carrito);
 }
 
+// AGREGAR A CARRITO
+
+let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
+
 function agregar_a_carrito(e) {
   let button = e.target;
 
+  let idProducto = button.parentElement.querySelector("#card_id").textContent;
   let nombreProductoArtista = button.parentElement.querySelector(
     ".card_title_artista"
   ).textContent;
@@ -118,64 +186,107 @@ function agregar_a_carrito(e) {
     button.parentElement.parentElement.querySelector("img").src;
 
   let producto_carrito = {
+    idProducto: idProducto,
     nombre_artista: nombreProductoArtista,
     nombre_album: nombreProductoAlbum,
     precio: precioProducto,
     cantidad: 1,
     img: imagenProducto,
   };
-  carrito.push(producto_carrito);
-  mostrar_total_carrito();
-  mostrar_carrito();
-  guardarSession();
+
+  aumentar_producto__carrito(producto_carrito);
 }
 
-mostrar_carrito();
+// AUMENTAR PRODUCTO CARRITO
 
-function mostrar_carrito() {
+function aumentar_producto__carrito(producto_carrito) {
+  const inputProductoUnidades =
+    document.getElementsByClassName("input_unidades");
+  for (let i = 0; i < carrito.length; i++) {
+    if (carrito[i].idProducto === producto_carrito.idProducto) {
+      carrito[i].cantidad++;
+      const inputValorNuevoUnidades = inputProductoUnidades[i];
+      inputValorNuevoUnidades.value++;
+      carrito_total();
+      return null;
+    }
+  }
+
+  carrito.push(producto_carrito);
+  render_carrito();
+  guardarSession();
+  console.log(carrito);
+}
+
+render_carrito();
+
+// RENDER CARRITO
+
+function render_carrito() {
   let tabla = document.getElementById("carrito-items");
   tabla.innerHTML = "";
 
   for (let producto of carrito) {
     let fila = document.createElement("tr");
-    fila.innerHTML = `<td><img src="${producto.img}" width="80px"></td>
+    fila.innerHTML = `<td><img src="${producto.img}" width="80px">
+                      <p class="id_producto">${producto.idProducto}</p></td>
                       <td><p class="nombre_producto_artista">${producto.nombre_artista}</p></td>
                       <td><p class="nombre_producto_album">${producto.nombre_album}</p></td>
-                      <td class="prod_carrito_unidades">Unidades: ${producto.cantidad}</td>
+                      <input type="number" min="1" class="input_unidades" value=${producto.cantidad}>
                       <td class="prod_carrito_precio">${producto.precio}</td>
                       <button class="btn btn-danger button btn_borrar_elemento">ELIMINAR</button>`;
 
     tabla.append(fila);
-    
+    carrito_total();
+    guardarSession();
   }
 
+  // AUMENTAR CLICKEANDO BOTON INPUT
+
+  let btn_input = document.querySelectorAll(".ItemCarrito");
+
+  for (let btn of btn_input) {
+    btn.addEventListener("change", sumaCantidad);
+  }
+
+  function sumaCantidad(e) {
+    const sumaInput = e.target;
+    const valorInput =
+      sumaInput.parentElement.querySelector(".ItemCarrito").textContent;
+    carrito.forEach((item) => {
+      if (item.cantidad === valorInput) {
+        sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
+        item.cantidad = sumaInput.value;
+        carrito_total();
+      }
+    });
+  }
+
+  // BORRAR ELEMENTOS
+
+  let btn_borrar_elemento = document.querySelectorAll(".btn_borrar_elemento");
+
+  for (let btn of btn_borrar_elemento) {
+    btn.addEventListener("click", eliminar_producto);
+  }
+
+  function eliminar_producto(e) {
+    let padre = e.target.parentNode;
+    let producto_eliminar = padre.querySelector(".id_producto").textContent;
+
+    for (let i = 0; i < carrito.length; i++) {
+      if (carrito[i].idProducto === producto_eliminar) {
+        carrito.splice(i, 1);
+        padre.remove();
+        carrito_total();
+      }
+    }
+  }
+
+  carrito_total();
 }
 
-// let precioTotal = carrito.reduce((acc, prod) => acc + prod.precio, 0)
-// console.log(precioTotal);
-
-
-
-
-let btn_borrar_elemento = document.querySelectorAll(".btn_borrar_elemento");
-
-for (let btn of btn_borrar_elemento) {
-  btn.addEventListener("click", eliminar_producto);
-}
-
-function eliminar_producto(e) {
-  e.target.parentNode.remove();
-  console.log("BORRANDO");
-  //  mostrar_carrito ();
-}
+carrito_total();
+guardarSession();
 
 console.log(carrito);
-
-const mostrar_total_carrito = () => {
-
-const total_a_pagar = carrito.reduce((acc, item) => acc + parseInt(item.precio), 0);
-
-document.getElementById("carrito_precio_total").innerHTML = `$${total_a_pagar}`;
-console.log(total_a_pagar);
-}
-
