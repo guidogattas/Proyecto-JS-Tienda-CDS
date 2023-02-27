@@ -139,9 +139,6 @@ function renderizarProductos() {
 
 renderizarProductos();
 
-const guardarSession = () => {
-  sessionStorage.setItem("carrito", JSON.stringify(carrito));
-};
 
 // TOTAL CARRITO
 
@@ -152,12 +149,12 @@ const carrito_total = () => {
   carrito.forEach((producto) => {
     const precio = parseInt(producto.precio);
     const cantidad = parseInt(producto.cantidad);
-    total_a_pagar += precio * cantidad;
+    total_a_pagar = precio * cantidad;
     
 
   });
   valor_total.innerHTML = `$${total_a_pagar}`;
-  guardarSession();
+  sessionStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
 // CARRITO
@@ -214,7 +211,7 @@ function aumentar_producto__carrito(producto_carrito) {
 
   carrito.push(producto_carrito);
   render_carrito();
-  guardarSession();
+  // guardarSession();
 }
 
 render_carrito();
@@ -237,7 +234,6 @@ function render_carrito() {
 
     tabla.append(fila);
     carrito_total();
-    guardarSession();
   }
 
   // AUMENTAR CLICKEANDO BOTON INPUT
@@ -253,12 +249,6 @@ function render_carrito() {
     console.log(valorInput);
 
     console.log(valorInput.value);
-    // console.log(carrito);
-
-    // const id = valorInput.parentElement.value;
-    // // console.log(valorInput);
-    // console.log(id);
-
 
     carrito.forEach((producto) => {
       // if (valorInput.value < 1) {
@@ -269,7 +259,6 @@ function render_carrito() {
       // }
         valorInput.value < 1 ? (valorInput.value = 1) : valorInput.value;
         producto.cantidad = valorInput.value;
-        guardarSession();
         carrito_total();
     });
 
@@ -300,6 +289,5 @@ function render_carrito() {
 }
 
 carrito_total();
-guardarSession();
 
 // console.log (carrito);
