@@ -109,10 +109,32 @@ lista_productos.push(
     "CD012",
     "Alice In Chains",
     "Dirt",
-    "./images/alice-in-chains-dirt.webp",
-    3550
+    "./images/metallica_master.webp",
+    3250
   )
 );
+lista_productos.push(
+  new Productos(
+    "CD013",
+    "Pink Floyd",
+    "Dark Side of the Moon",
+    "./images/pink_floyd_dark.png",
+    3750
+  )
+);
+lista_productos.push(
+  new Productos(
+    "CD014",
+    "Rage Against The Machine",
+    "Evil Empire",
+    "./images/rage_evil_empire.jpg",
+    3100
+  )
+);
+
+
+
+
 // RENDER PRODUCTOS
 
 let productos_agregar = document.querySelector(".productos");
@@ -140,22 +162,7 @@ function renderizarProductos() {
 renderizarProductos();
 
 
-// TOTAL CARRITO
 
-const carrito_total = () => {
-  const valor_total = document.getElementById("carrito_precio_total");
-
-  let total_a_pagar = 0;
-  carrito.forEach((producto) => {
-    const precio = parseInt(producto.precio);
-    const cantidad = parseInt(producto.cantidad);
-    total_a_pagar += precio * cantidad;
-    
-
-  });
-  valor_total.innerHTML = `$${total_a_pagar}`;
-  sessionStorage.setItem("carrito", JSON.stringify(carrito));
-};
 
 // CARRITO
 
@@ -194,6 +201,23 @@ function agregar_a_carrito(e) {
   aumentar_producto__carrito(producto_carrito);
 }
 
+// TOTAL CARRITO
+
+const carrito_total = () => {
+  const valor_total = document.getElementById("carrito_precio_total");
+
+  let total_a_pagar = 0;
+  carrito.forEach((producto) => {
+    const precio = parseInt(producto.precio);
+    const cantidad = parseInt(producto.cantidad);
+    total_a_pagar += precio * cantidad;
+    
+
+  });
+  valor_total.innerHTML = `$${total_a_pagar}`;
+  sessionStorage.setItem("carrito", JSON.stringify(carrito));
+};
+
 // AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
 
 function aumentar_producto__carrito(producto_carrito) {
@@ -226,7 +250,8 @@ function render_carrito() {
                       <p class="id_producto">${producto.idProducto}</p></td>
                       <td><p class="nombre_producto_artista">${producto.nombre_artista}</p></td>
                       <td><p class="nombre_producto_album">${producto.nombre_album}</p></td>
-                      <input type="number" min="1" class="input_unidades" value=${producto.cantidad}>
+                      <td>
+                      <input type="number" min="1" class="input_unidades" value=${producto.cantidad}></td>
                       <td class="prod_carrito_precio">${producto.precio}</td>
                       <button class="btn btn-danger button btn_borrar_elemento">ELIMINAR</button>`;
 
@@ -236,32 +261,31 @@ function render_carrito() {
 
   // AUMENTAR CLICKEANDO BOTON INPUT
 
-  let btn_input = document.querySelectorAll(".input_unidades");
+  const btn_input = document.querySelectorAll(".input_unidades");
+
+
 
   for (let btn of btn_input) {
-    btn.addEventListener("click", sumaCantidad);
+    btn.addEventListener("change", sumaCantidad);
   }
 
   function sumaCantidad(e) {
-    const valorInput = e.target;
-    console.log(valorInput);
 
-    console.log(valorInput.value);
-    // console.log(carrito);
+    const sumaInput = e.target;
+    const idProd = sumaInput.parentElement.parentElement.querySelector(".id_producto").textContent;
+    console.log (idProd);
 
-    carrito.forEach((producto) => {
-      // if (valorInput.value < 1) {
-      //   valorInput.value = 1
-      // }
-      // else {
-      //   valorInput.value
-      // }
-        valorInput.value < 1 ? (valorInput.value = 1) : valorInput.value;
-        producto.cantidad = valorInput.value;
+
+
+    carrito.forEach((item) => {
+      if(item.idProducto === idProd) {
+        sumaInput.value < 1 ? sumaInput.value = 1 : sumaInput.value;
+        item.cantidad = sumaInput.value;
         carrito_total();
-    });
+      }
+        });
+      }
 
-  }
 
   // BORRAR ELEMENTOS
 
@@ -289,7 +313,28 @@ function render_carrito() {
 
 
 let btn_pagar = document.querySelector('.btn-pagar');
-btn_pagar.addEventListener('click', () => {document.body.innerHTML =
-`<h1>GRACIAS POR SU COMPRA</h1>
-<a href="index.html">Volver</a>`
+
+btn_pagar.addEventListener('click', () => {
+
+
+  let  total_a_pagar = document.getElementById('carrito_precio_total').textContent.replace("$", "" );
+  console.log(total_a_pagar);
+
+  
+  if (total_a_pagar > 0) {
+  
+  
+  document.body.innerHTML =
+`<h1>GRACIAS POR SU COMPRA!😀</h1>
+<a href="index.html" class= "volver_a_la_tienda">VOLVER A LA TIENDA</a>`}
+else {
+
+
+  document.body.innerHTML =
+  `<h1>NO HA REALIZADO UNA COMPRA😒</h1>
+  <a href="index.html" class= "volver_a_la_tienda">VOLVER A LA TIENDA</a>`
+
+}
+
+;
 window.sessionStorage.clear()});

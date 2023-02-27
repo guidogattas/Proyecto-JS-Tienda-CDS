@@ -54,6 +54,7 @@ button {
   padding: 20px;
   font-size: larger;
   cursor: pointer;
+
 }
 
 
@@ -66,6 +67,10 @@ input {
 h3 {
   text-align: center;
   padding: 50px;
+}
+
+h4.card_title_artista {
+ font-weight: bold;
 }
 
 h6#card_id {
@@ -129,17 +134,16 @@ div.card:hover{
 
   tr {
     display: flex;
-    
+    align-items: center;
     width: 100%;
   }
 
   td {
-    font-size: 10px;
+    display: flex;
     height: 100px;
     width: 100%;
     justify-content: center;
     align-items: center;
-    display: flex;
   }
 
   td p {
@@ -298,4 +302,20 @@ div.card:hover{
   p.id_producto {
     width: min-content;
     color:rgb(68, 12, 12);
+  }
+
+
+  a.volver_a_la_tienda {
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bolderc;
+    color: rgb(14, 116, 5);
+    text-shadow: 2px black solid;
+    box-shadow: 3px black solid;
+    text-align: left;
+
+  }
+
+  a.volver_a_la_tienda:hover {
+    color: rgb(45, 167, 92) ;
   }
