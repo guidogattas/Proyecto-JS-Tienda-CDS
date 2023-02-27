@@ -218,7 +218,7 @@ const carrito_total = () => {
   sessionStorage.setItem("carrito", JSON.stringify(carrito));
 };
 
-// AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
+// AGREGAR A CARRITO O AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
 
 function aumentar_producto__carrito(producto_carrito) {
   const inputProductoUnidades = document.getElementsByClassName("input_unidades");
