@@ -273,9 +273,6 @@ function render_carrito() {
 
     const sumaInput = e.target;
     const idProd = sumaInput.parentElement.parentElement.querySelector(".id_producto").textContent;
-    console.log (idProd);
-
-
 
     carrito.forEach((item) => {
       if(item.idProducto === idProd) {
@@ -318,8 +315,6 @@ btn_pagar.addEventListener('click', () => {
 
 
   let  total_a_pagar = document.getElementById('carrito_precio_total').textContent.replace("$", "" );
-  console.log(total_a_pagar);
-
   
   if (total_a_pagar > 0) {
   
