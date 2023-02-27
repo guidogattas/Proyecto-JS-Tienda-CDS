@@ -149,7 +149,7 @@ const carrito_total = () => {
   carrito.forEach((producto) => {
     const precio = parseInt(producto.precio);
     const cantidad = parseInt(producto.cantidad);
-    total_a_pagar = precio * cantidad;
+    total_a_pagar += precio * cantidad;
     
 
   });
@@ -171,7 +171,6 @@ let carrito = JSON.parse(sessionStorage.getItem("carrito")) || [];
 
 function agregar_a_carrito(e) {
   let button = e.target;
-
   let idProducto = button.parentElement.querySelector("#card_id").textContent;
   let nombreProductoArtista = button.parentElement.querySelector(
     ".card_title_artista"
@@ -211,7 +210,6 @@ function aumentar_producto__carrito(producto_carrito) {
 
   carrito.push(producto_carrito);
   render_carrito();
-  // guardarSession();
 }
 
 render_carrito();
@@ -249,6 +247,7 @@ function render_carrito() {
     console.log(valorInput);
 
     console.log(valorInput.value);
+    // console.log(carrito);
 
     carrito.forEach((producto) => {
       // if (valorInput.value < 1) {
@@ -287,7 +286,3 @@ function render_carrito() {
 
   carrito_total();
 }
-
-carrito_total();
-
-// console.log (carrito);
