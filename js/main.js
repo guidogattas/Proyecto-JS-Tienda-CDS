@@ -255,11 +255,6 @@ function render_carrito() {
     console.log(valorInput.value);
     // console.log(carrito);
 
-    // const id = valorInput.parentElement.value;
-    // // console.log(valorInput);
-    // console.log(id);
-
-
     carrito.forEach((producto) => {
       // if (valorInput.value < 1) {
       //   valorInput.value = 1
