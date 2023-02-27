@@ -149,12 +149,13 @@ const carrito_total = () => {
   const valor_total = document.getElementById("carrito_precio_total");
 
   let total_a_pagar = 0;
-  carrito.forEach((item) => {
-    const precio = parseInt(item.precio);
-    const cantidad = parseInt(item.cantidad);
+  carrito.forEach((producto) => {
+    const precio = parseInt(producto.precio);
+    const cantidad = parseInt(producto.cantidad);
     total_a_pagar += precio * cantidad;
-  });
+    
 
+  });
   valor_total.innerHTML = `$${total_a_pagar}`;
   guardarSession();
 };
@@ -197,11 +198,10 @@ function agregar_a_carrito(e) {
   aumentar_producto__carrito(producto_carrito);
 }
 
-// AUMENTAR PRODUCTO CARRITO
+// AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
 
 function aumentar_producto__carrito(producto_carrito) {
-  const inputProductoUnidades =
-    document.getElementsByClassName("input_unidades");
+  const inputProductoUnidades = document.getElementsByClassName("input_unidades");
   for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].idProducto === producto_carrito.idProducto) {
       carrito[i].cantidad++;
@@ -245,19 +245,34 @@ function render_carrito() {
   let btn_input = document.querySelectorAll(".input_unidades");
 
   for (let btn of btn_input) {
-    btn.addEventListener("change", sumaCantidad);
+    btn.addEventListener("click", sumaCantidad);
   }
 
   function sumaCantidad(e) {
-    const input = e.target;
-    const id = input.parentElement.querySelector(".id_producto").textContent;
+    const valorInput = e.target;
+    console.log(valorInput);
+
+    console.log(valorInput.value);
+    // console.log(carrito);
+
+    // const id = valorInput.parentElement.value;
+    // // console.log(valorInput);
+    // console.log(id);
 
 
     carrito.forEach((producto) => {
-        input.value < 1 ? (input.value = 1) : input.value;
-        producto.cantidad = input.value;
+      // if (valorInput.value < 1) {
+      //   valorInput.value = 1
+      // }
+      // else {
+      //   valorInput.value
+      // }
+        valorInput.value < 1 ? (valorInput.value = 1) : valorInput.value;
+        producto.cantidad = valorInput.value;
+        guardarSession();
         carrito_total();
     });
+
   }
 
   // BORRAR ELEMENTOS
@@ -287,4 +302,4 @@ function render_carrito() {
 carrito_total();
 guardarSession();
 
-console.log (carrito);
+// console.log (carrito);
