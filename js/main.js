@@ -291,4 +291,5 @@ function render_carrito() {
 let btn_pagar = document.querySelector('.btn-pagar');
 btn_pagar.addEventListener('click', () => {document.body.innerHTML =
 `<h1>GRACIAS POR SU COMPRA</h1>
-<a href="index.html">Volver</a>`});
+<a href="index.html">Volver</a>`
+window.sessionStorage.clear()});
