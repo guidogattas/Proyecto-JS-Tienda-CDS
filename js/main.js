@@ -194,7 +194,7 @@ function agregar_a_carrito(e) {
   aumentar_producto__carrito(producto_carrito);
 }
 
-// AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
+// AGREGAR A CARRITO O AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
 
 function aumentar_producto__carrito(producto_carrito) {
   const inputProductoUnidades = document.getElementsByClassName("input_unidades");
