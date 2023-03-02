@@ -319,3 +319,8 @@ div.card:hover{
   a.volver_a_la_tienda:hover {
     color: rgb(45, 167, 92) ;
   }
+
+
+  .swal2-popup {
+    font-size: 1.6rem;
+  }
