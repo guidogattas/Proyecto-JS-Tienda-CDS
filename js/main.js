@@ -1,137 +1,11 @@
-// LISTA DE PRODUCTOS
-class Productos {
-  constructor(id, nombre_artista, nombre_album, imgSrc, precio, stock) {
-    this.id = id;
-    this.nombre_artista = nombre_artista;
-    this.nombre_album = nombre_album;
-    this.imgSrc = imgSrc;
-    this.precio = precio;
-  }
+async function getProductos() { 
+  
+  const response = await fetch("../js/productos.js");
+  const data = await response.json();
+  return data;
+
+
 }
-
-let lista_productos = [];
-
-lista_productos.push(
-  new Productos(
-    "CD001",
-    "Faith No More",
-    "King For A Day",
-    "./images/faith-no-more-king-for-a-day.png",
-    3000
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD002",
-    "Iron Maiden",
-    "Fear of the Dark",
-    "./images/iron-maiden-fear.jpg",
-    3500
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD003",
-    "Primus",
-    "Antipop",
-    "./images/primus-antipop.jpeg",
-    4000
-  )
-);
-lista_productos.push(
-  new Productos("CD004", "AC/DC", "Live", "./images/ac-dc-live", 3800)
-);
-lista_productos.push(
-  new Productos(
-    "CD005",
-    "Guns 'N' Roses",
-    "Apetite for Destruction",
-    "./images/guns-n-roses-apetite.jpg",
-    3600
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD006",
-    "At The Drive In",
-    "Relationship of Command",
-    "./images/at-the-drive-in-relationship.webp",
-    2600
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD007",
-    "Slipknot",
-    "Day of the Gusano",
-    "./images/slipknot-day.jpg",
-    3600
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD008",
-    "Stone Temple Pilots",
-    "Core",
-    "./images/stone-temple-pilots-core.webp",
-    3750
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD009",
-    "Soundgarden",
-    "Badmotorfinger",
-    "./images/soundgarden-badmotorfinger.jpg",
-    3750
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD010",
-    "Iron Maiden",
-    "The Number of the Beast",
-    "./images/iron-maiden-the-number-of-the-beast.jpg",
-    3650
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD011",
-    "Dropkick Murphys",
-    "The Gang's All Here",
-    "./images/dropkick-murphys-gangsallhere.jpg",
-    2800
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD012",
-    "Alice In Chains",
-    "Dirt",
-    "./images/metallica_master.webp",
-    3250
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD013",
-    "Pink Floyd",
-    "Dark Side of the Moon",
-    "./images/pink_floyd_dark.png",
-    3750
-  )
-);
-lista_productos.push(
-  new Productos(
-    "CD014",
-    "Rage Against The Machine",
-    "Evil Empire",
-    "./images/rage_evil_empire.jpg",
-    3100
-  )
-);
-
 
 
 
@@ -139,31 +13,26 @@ lista_productos.push(
 
 let productos_agregar = document.querySelector(".productos");
 
-function renderizarProductos() {
-  lista_productos.forEach((producto) => {
-    productos_agregar.innerHTML += `
-    <div class='card'>
-    <img src='${producto.imgSrc}' class='card-img-top card_img' alt='imagen ${producto.nombre}'>
-    <div class='card_body'>
-      <h4 class='card_title_artista'>${producto.nombre_artista}</h4>
-      <h5 class='card_title_album'>${producto.nombre_album}</h5>
-      <h5 class='card_precio'>${producto.precio}$</h5>
-      <h6 id='card_id'>${producto.id}</h6>
+getProductos().then((data) => {
+  data.forEach((producto) => {
+  producto.precio = parseInt(producto.precio);
+  productos_agregar.innerHTML += `
+  <div class='card'>
+  <img src='${producto.imgSrc}' class='card-img-top card_img' alt='imagen ${producto.nombre}'>
+  <div class='card_body'>
+    <h4 class='card_title_artista'>${producto.nombre_artista}</h4>
+    <h5 class='card_title_album'>${producto.nombre_album}</h5>
+    <h5 class='card_precio'>${producto.precio}$</h5>
+    <h6 id='card_id'>${producto.id}</h6>
 
-      <button class='btn_agregar_carrito'>AGREGAR AL CARRITO</button>
-
-    </div>
+    <button class='btn_agregar_carrito'>AGREGAR AL CARRITO</button>
 
   </div>
-    `;
-  });
-}
 
-renderizarProductos();
-
-
-
-
+</div>
+  `;
+  
+});
 // CARRITO
 
 let btn_agregar = document.querySelectorAll(".btn_agregar_carrito");
@@ -374,3 +243,17 @@ else {
 
 }
 });
+}
+
+
+
+
+
+
+)
+
+
+
+
+
+
