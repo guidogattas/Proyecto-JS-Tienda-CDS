@@ -1,6 +1,6 @@
 async function getProductos() { 
   
-  const response = await fetch("productos.js");
+  const response = await fetch("productos.json");
   const data = await response.json();
   return data;
 
