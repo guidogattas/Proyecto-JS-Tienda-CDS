@@ -1,6 +1,0 @@
-Proyecto JS
-Proyecto CoderHouse JavaScript
-
-App Status Development mode (what does this mean?)
-Client ID d2caab8f42f8481091c028e448bf84e3
-Client Secret f829d50cdd6641638f8234c837b8c0c6 
