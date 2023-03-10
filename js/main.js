@@ -131,6 +131,10 @@ getProductos().then((data) => {
 
   render_carrito();
 
+
+
+
+
   // RENDER CARRITO
 
   function render_carrito() {
@@ -141,9 +145,9 @@ getProductos().then((data) => {
       let fila = document.createElement("tr");
       fila.innerHTML = `<td><img src="${producto.img}" width="80px">
                       <p class="id_producto">${producto.idProducto}</p></td>
-                      <td><p class="nombre_producto_artista">${producto.nombre_artista}</p></td>
-                      <td><p class="nombre_producto_album">${producto.nombre_album}</p></td>
-                      <td>
+                      <td class="td_nombre_producto_artista"><p class="nombre_producto_artista">${producto.nombre_artista}</p></td>
+                      <td class="td_nombre_producto_album"><p class="nombre_producto_album">${producto.nombre_album}</p></td>
+                      <td class="td_input_unidades">
                       <input type="number" min="1" class="input_unidades" value=${producto.cantidad}></td>
                       <td class="prod_carrito_precio">${producto.precio}</td>
                       <button class="btn btn-danger button btn_borrar_elemento">ELIMINAR</button>`;
@@ -175,7 +179,6 @@ getProductos().then((data) => {
         }
       });
     }
-
 
     // BORRAR ELEMENTOS
 
