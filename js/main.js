@@ -212,7 +212,9 @@ getProductos().then((data) => {
     let total_a_pagar = document.getElementById('carrito_precio_total').textContent.replace("$", "");
 
     if (total_a_pagar > 0) {
-
+      carrito = []
+      window.sessionStorage.clear()
+      render_carrito();
       Swal.fire({
         imageUrl: "./images/gracias_compra.png",
         imageWidth: "300px",
@@ -225,7 +227,7 @@ getProductos().then((data) => {
         }
       })
 
-      window.sessionStorage.clear()
+
     }
     else {
 
