@@ -137,10 +137,10 @@
 
   {
     "id": "CD018",
-    "nombre_artista": "Rage Against The Machine",
-    "nombre_album": "Evil Empire",
-    "imgSrc": "./images/rage_evil_empire.jpg",
-    "precio": "3100"
+    "nombre_artista": "Deftones",
+    "nombre_album": "White Pony",
+    "imgSrc": "./images/deftones-white-pony.jpg",
+    "precio": "3550"
   },
 
   {
@@ -221,6 +221,22 @@
     "nombre_album": "No Prayer for the Dying",
     "imgSrc": "./images/iron-maiden-no-prayer-for-the-dying.jpg",
     "precio": "3100"
+  },
+
+  {
+    "id": "CD029",
+    "nombre_artista": "Rage Against The Machine",
+    "nombre_album": "Rage Against The Machine",
+    "imgSrc": "./images/rage-rage.jpeg",
+    "precio": "3200"
+  },
+
+  {
+    "id": "CD030",
+    "nombre_artista": "Iron Maiden",
+    "nombre_album": "No Prayer for the Dying",
+    "imgSrc": "./images/iron-maiden-no-prayer-for-the-dying.jpg",
+    "precio": "3350"
   }
   
 ]

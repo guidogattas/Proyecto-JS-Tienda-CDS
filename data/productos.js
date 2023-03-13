@@ -138,10 +138,10 @@
 
   {
     "id": "CD018",
-    "nombre_artista": "Rage Against The Machine",
-    "nombre_album": "Evil Empire",
-    "imgSrc": "./images/rage_evil_empire.jpg",
-    "precio": "3100"
+    "nombre_artista": "Deftones",
+    "nombre_album": "White Pony",
+    "imgSrc": "./images/deftones-white-pony.jpg",
+    "precio": "3550"
   },
 
   {
