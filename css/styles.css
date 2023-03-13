@@ -95,7 +95,8 @@ div.buscador {
   justify-content: center;
   gap: 20px;
   align-items: center;
-  font-weight: bold;;
+  font-weight: bold;
+  margin: 30px;
 }
 
 div.productos {
