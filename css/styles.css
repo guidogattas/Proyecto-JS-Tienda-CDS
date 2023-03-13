@@ -89,6 +89,15 @@ h6#card_id {
   font-size: 10px;
 }
 
+
+div.buscador {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  font-weight: bold;;
+}
+
 div.productos {
   display: flex;
   justify-content: center;
@@ -103,6 +112,7 @@ div.card {
   transition: 0.4s;
   width: 18rem;
 }
+
 
 
 

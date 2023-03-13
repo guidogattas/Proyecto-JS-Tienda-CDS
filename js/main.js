@@ -57,7 +57,7 @@ getProductos().then((productos) => {
     let imagenProducto =
       button.parentElement.parentElement.querySelector("img").src;
 
-      Toa_agregar_prod();
+    Toa_agregar_prod();
 
     let producto_carrito = {
       idProducto: idProducto,
@@ -66,7 +66,7 @@ getProductos().then((productos) => {
       precio: precioProducto,
       cantidad: 1,
       img: imagenProducto,
-      
+
     };
 
 
@@ -113,6 +113,25 @@ getProductos().then((productos) => {
       }
     }).showToast();
   };
+
+  // BÚSQUEDA
+
+  const searchInput = document.querySelector("[data-search]");
+  const card = document.getElementsByClassName("card");
+
+  searchInput.addEventListener("input", (e) => {
+
+    const value = e.target.value.toLowerCase()
+
+    for (let i = 0; i < productos.length; i++) {
+      const isVisible =
+        productos[i].nombre_artista.toLowerCase().includes(value) ||
+        productos[i].nombre_album.toLowerCase().includes(value);
+        card[i].classList.toggle("hide", !isVisible)
+    }
+
+  });
+
 
 
 
