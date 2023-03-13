@@ -13,8 +13,8 @@ async function getProductos() {
 
 let productos_agregar = document.querySelector(".productos");
 
-getProductos().then((data) => {
-  data.forEach((producto) => {
+getProductos().then((productos) => {
+  productos.forEach((producto) => {
     producto.precio = parseInt(producto.precio);
     productos_agregar.innerHTML += `
   <div class='card'>
@@ -50,13 +50,14 @@ getProductos().then((data) => {
     let idProducto = button.parentElement.querySelector("#card_id").textContent;
     let nombreProductoArtista = button.parentElement.querySelector(
       ".card_title_artista").textContent;
-    Toa_agregar_prod();
     let nombreProductoAlbum =
       button.parentElement.querySelector(".card_title_album").textContent;
     let precioProducto =
       button.parentElement.querySelector(".card_precio").textContent;
     let imagenProducto =
       button.parentElement.parentElement.querySelector("img").src;
+
+      Toa_agregar_prod();
 
     let producto_carrito = {
       idProducto: idProducto,
@@ -65,6 +66,7 @@ getProductos().then((data) => {
       precio: precioProducto,
       cantidad: 1,
       img: imagenProducto,
+      
     };
 
 
@@ -112,6 +114,8 @@ getProductos().then((data) => {
     }).showToast();
   };
 
+
+
   // AGREGAR A CARRITO O AUMENTAR VALOR INPUT DESDE AGREGAR A CARRITO
 
   function aumentar_producto__carrito(producto_carrito) {
@@ -122,7 +126,7 @@ getProductos().then((data) => {
         const inputValorNuevoUnidades = inputProductoUnidades[i];
         inputValorNuevoUnidades.value++;
         carrito_total();
-        return null;
+        return "";
       }
     }
     carrito.push(producto_carrito);

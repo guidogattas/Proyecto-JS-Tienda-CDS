@@ -21,7 +21,8 @@ header {
 header img {
 
   max-height: 300px;
-  width: 60%;
+  max-width: 600px;
+  width:80%
 }
 
 header h2 {
@@ -30,6 +31,16 @@ header h2 {
   color: #000000;
   padding: 30px 0;
 }
+
+h2.bienvenida {
+  text-align: center;
+  font-size: 20px;
+  color: #000000;
+  padding: 30px 0;
+  font-style: italic;
+  margin: 20px;
+}
+
 
 h1#titulo_principal {
   text-align: center;
@@ -174,6 +185,11 @@ thead {
 
 /* CARRITO  */
 
+.carrito {
+  z-index: 100;
+
+}
+
 
 .carrito-total {
   display: flex;
@@ -215,6 +231,9 @@ thead {
   margin-right: 0px;
   /* margin-top: -100%;
     opacity: 0; */
+    position: relative;
+    z-index: 20;
+    background-color: #FDD000;
 }
 
 .carrito .header-carrito {
@@ -255,7 +274,6 @@ thead {
   cursor: pointer;
   display: block;
   background: transparent;
-  z-index: 20;
 }
 
 button.btn_borrar_elemento {
@@ -268,23 +286,25 @@ button.btn_borrar_elemento {
 }
 
 
-div.carrito-fijo {
+.carrito-fijo {
 position: fixed;
 font-size: 50px;
 margin-right: 14px;
 top: 300px;
 right: 0;
 z-index: 9;
-
 }
 
 div.carrito-fijo a{
   text-decoration: none;
   color:rgb(29, 187, 129);
   filter: drop-shadow(4px 4px 8px black);
-  
-  
+
   }
+
+div.card.hide {
+  display: none;
+}
 
 
 .carrito-total {
@@ -371,6 +391,8 @@ a.volver_a_la_tienda:hover {
 }
 
 
+
+
 .swal2-popup {
   font-size: 1.6rem;
 }
@@ -406,7 +428,13 @@ footer p {
   scale: 1.04;
 }
 
+@media only screen and (min-width: 1080px) {
 
+h2.bienvenida {
+  margin: 20px 320px;
+}
+
+}
 @media only screen and (max-width: 600px) {
 
   .id_producto, .td_nombre_producto_album, .td_nombre_producto_artista {
