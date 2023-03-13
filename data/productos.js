@@ -222,6 +222,38 @@
     "nombre_album": "No Prayer for the Dying",
     "imgSrc": "./images/iron-maiden-no-prayer-for-the-dying.jpg",
     "precio": "3100"
+  },
+
+  {
+    "id": "CD029",
+    "nombre_artista": "Rage Against The Machine",
+    "nombre_album": "Rage Against The Machine",
+    "imgSrc": "./images/rage-rage.jpeg",
+    "precio": "3200"
+  },
+
+  {
+    "id": "CD030",
+    "nombre_artista": "Pearl Jam",
+    "nombre_album": "Ten",
+    "imgSrc": "./images/pearl-jam-ten.jpg",
+    "precio": "3650"
+  },
+
+  {
+    "id": "CD031",
+    "nombre_artista": "Pearl Jam",
+    "nombre_album": "Vs",
+    "imgSrc": "./images/pearl-jam-vs.jpg",
+    "precio": "3550"
+  },
+
+  {
+    "id": "CD032",
+    "nombre_artista": "Pearl Jam",
+    "nombre_album": "Vitalogy",
+    "imgSrc": "./images/pearl-jam-vitalogy.jpg",
+    "precio": "3350"
   }
   
 ]
